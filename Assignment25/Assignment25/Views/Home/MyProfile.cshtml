@@ -1,0 +1,46 @@
+﻿@model  Assignment25.TblTweetuser
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile</h2>
+
+<h2>Welcome, @ViewBag.UserName</h2>
+<table id="myTable" class="table table-bordered">
+
+    <tr>
+        <th>UserId</th>
+        <th>User Name</th>
+        <th>Password</th>
+        <th>Email</th>
+    </tr>
+    <tr>
+        <td>  @Html.DisplayFor(model => Model.UserId) </td>
+        <td>@Html.DisplayFor(model => Model.UserName)</td>
+        <td>@Html.DisplayFor(model => Model.Password)</td>
+        <td>@Html.DisplayFor(model => Model.EmailId)</td>
+    </tr>
+    <tr>
+ 
+</tr>
+</table>
+<div style="background-color:burlywood;width:100%;color:blue;padding:6px;">
+    @Html.ActionLink("Edit", "UpdateProfile", new
+{
+    id = Model.UserId,
+    username = Model.UserName
+})|
+    @Html.ActionLink("Delete", "DeleteProfile", new
+     {
+         id = Model.UserId,
+         username = Model.UserName
+     })
+    |
+    @Html.ActionLink("Back to List", "SearchIndex", new { id = Model.UserId }) 
+</div>
+<style>
+    a{
+        color:black;
+    }
+
+</style>

@@ -1,0 +1,54 @@
+﻿@model  Assignment25.Models.Tweets
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Welcome Home @Html.DisplayFor(model => model.UserName)</h2>
+
+<p>
+    @Html.ActionLink("View My Tweets", "MyTweets", new { id = @ViewBag.UserId, username = @ViewBag.UserName })
+</p>
+<p>
+    @Html.ActionLink("Search User", "Search", new { text = "", id = @ViewBag.UserId, username = @ViewBag.UserName })
+</p>
+<table id="myTable" class="table table-bordered">
+
+@if (Model != null && Model.tweetslists != null)
+{
+ 
+    <tr>
+        <th colspan="4" class="Success">
+            Tweets
+        </th>
+    </tr>
+    <tr>
+        <th class="active" style="color:#1da1f2">UserId</th>
+        <th class="active" style="color:#1da1f2">User Name</th>
+        <th class="active" style="color:#1da1f2">Text</th>
+        <th class="active" style="color:#1da1f2">Modified Date</th>
+    </tr>
+        foreach (var customer in Model.tweetslists)
+        {
+            <tr>
+                <td>  @Html.DisplayFor(model => customer.TweetUserId) </td>
+                <td>@Html.DisplayFor(model => customer.TweetUserName)</td>
+                <td>@Html.DisplayFor(model => customer.TweetText)</td>
+                <td>@Html.DisplayFor(model => customer.TweetModifiedDate)</td>
+            </tr>
+        }
+
+    }
+    else
+    {
+      <tr><td>No Tweets</td></tr>   
+    }
+
+
+
+</table>
+<script>
+    $(document).ready(function () {
+        $('#myTable').dataTable();
+    });
+</script> 

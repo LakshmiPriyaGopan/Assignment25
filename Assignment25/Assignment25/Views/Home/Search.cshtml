@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Assignment25.TblTweetuser>
+
+@{
+    ViewBag.Title = "User List";
+}
+<h2>Search User List</h2>
+
+<h2>Welcome Home @ViewBag.UserName</h2>
+<p>
+   
+</p>
+<table class="table">
+    @using (Html.BeginForm("Search"))
+    {
+        <tr  style="text-align:center;background-color:#e6ecf0;width:100%;color:black">
+            <td colspan="2">Search Text:</td>
+            <td colspan="2">@Html.TextBox("text") <input type="hidden" name="id" value=@ViewBag.UserId />
+                <input type="hidden" name="username" value=@ViewBag.UserName /></td>
+            <td colspan="2"><input type="submit" name="Search" value="Search"  style="background-color:#1da1f2;color:white;border-radius: 12px;"/>
+              @*  @Html.ActionLink("Search", "Search", "Home", new { text= @Html.TextBox("txtSearch") ,
+                  id = @ViewBag.UserId, username = @ViewBag.UserName })*@
+                </td>
+            </tr>
+        }
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th>
+                No of Followers
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedDate)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Count)</td>
+                <td>
+                    @if(item.Follwers !=null && item.Follwers.Contains("," + @ViewBag.UserId+","))
+                    {
+                      <div>Already Followed</div>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Follow", "Follow", new { id = item.UserId, followid = ViewBag.UserId })
+
+                    }
+                </td>
+            </tr>
+        }
+    <tr style="text-align:center;background-color:bisque ;width:100%;color:black"><td colspan="6">
+    @Html.ActionLink("Back to Home", "SearchIndex", new { id = @ViewBag.UserId })
+</td>
+     </tr>
+</table>
+    <div>
+       
+        @*@Html.ActionLink("Back to List", "Index")*@
+</div>

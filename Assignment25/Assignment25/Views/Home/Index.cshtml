@@ -1,0 +1,97 @@
+﻿@model Assignment25.TblTweetuser
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+            table th {
+                background-color: #F7F7F7;
+                color: #333;
+                font-weight: bold;
+            }
+
+            table th, table td {
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body >   
+   <div class="error">@ViewBag.Message</div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <table border="0" cellpadding="7" cellspacing="7" style="width:80%">
+            <tr>
+                <th colspan="2" style="text-align:left">
+                   <h4>Log in to Twitter</h4> 
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Username
+                </td>
+                <td>
+                                        @Html.TextBoxFor(m => m.UserName)
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "error" })
+                </td> 
+            </tr>
+            <tr>
+                <td>
+                    Password
+                </td>
+                <td>
+                                        @Html.PasswordFor(m => m.Password)
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
+                </td> 
+            </tr>
+            @*<tr>
+                <td colspan="2"> 
+                  @Html.ActionLink("Forgot Password?", "ForgotPassword", "Home")
+                </td> 
+            </tr>*@
+            <tr>
+                <td><input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" /></td>
+                <td>
+                    <input type="submit" value="Submit" style="background-color:#1da1f2;color:white;border-radius: 12px;"/>
+                </td> 
+            </tr>
+            <tr>
+                <td colspan="2">
+                    New to Twitter?  @Html.ActionLink("Sign Up", "Register", "Home")
+                </td> 
+            </tr>
+        </table>
+    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (@ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert("@ViewBag.Message")
+            });
+        </script>
+    }
+</body>
+</html>

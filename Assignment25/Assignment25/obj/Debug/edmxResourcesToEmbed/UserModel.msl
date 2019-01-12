@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities">
+    <EntitySetMapping Name="TblTweets">
+      <EntityTypeMapping TypeName="DemoModel.TblTweet">
+        <MappingFragment StoreEntitySet="TblTweet">
+          <ScalarProperty Name="TweetUserName" ColumnName="TweetUserName" />
+          <ScalarProperty Name="TweetDeleted" ColumnName="TweetDeleted" />
+          <ScalarProperty Name="TweetModifiedDate" ColumnName="TweetModifiedDate" />
+          <ScalarProperty Name="TweetText" ColumnName="TweetText" />
+          <ScalarProperty Name="TweetUserId" ColumnName="TweetUserId" />
+          <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblTweetusers">
+      <EntityTypeMapping TypeName="DemoModel.TblTweetuser">
+        <MappingFragment StoreEntitySet="TblTweetuser">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Follwers" ColumnName="Follwers" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="delete_tweet" FunctionName="DemoModel.Store.delete_tweet" />
+    <FunctionImportMapping FunctionImportName="delete_tweetuser" FunctionName="DemoModel.Store.delete_tweetuser" />
+    <FunctionImportMapping FunctionImportName="follow_user" FunctionName="DemoModel.Store.follow_user" />
+    <FunctionImportMapping FunctionImportName="insert_tweet" FunctionName="DemoModel.Store.insert_tweet" />
+    <FunctionImportMapping FunctionImportName="insert_tweetuser" FunctionName="DemoModel.Store.insert_tweetuser" />
+    <FunctionImportMapping FunctionImportName="select_follow_tweet" FunctionName="DemoModel.Store.select_follow_tweet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.select_follow_tweet_Result">
+          <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+          <ScalarProperty Name="TweetUserId" ColumnName="TweetUserId" />
+          <ScalarProperty Name="TweetText" ColumnName="TweetText" />
+          <ScalarProperty Name="TweetModifiedDate" ColumnName="TweetModifiedDate" />
+          <ScalarProperty Name="TweetDeleted" ColumnName="TweetDeleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="select_self_tweet" FunctionName="DemoModel.Store.select_self_tweet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.select_self_tweet_Result">
+          <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+          <ScalarProperty Name="TweetUserId" ColumnName="TweetUserId" />
+          <ScalarProperty Name="TweetText" ColumnName="TweetText" />
+          <ScalarProperty Name="TweetModifiedDate" ColumnName="TweetModifiedDate" />
+          <ScalarProperty Name="TweetDeleted" ColumnName="TweetDeleted" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="select_tweetuser" FunctionName="DemoModel.Store.select_tweetuser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.select_tweetuser_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Follwers" ColumnName="Follwers" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="update_tweetuser" FunctionName="DemoModel.Store.update_tweetuser" />
+    <FunctionImportMapping FunctionImportName="validate_tweetuser" FunctionName="DemoModel.Store.validate_tweetuser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.validate_tweetuser_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Follwers" ColumnName="Follwers" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ValidateTweetUser" FunctionName="DemoModel.Store.validate_tweetuser" />
+    <FunctionImportMapping FunctionImportName="DisplayTweets" FunctionName="DemoModel.Store.select_follow_tweet" />
+    <FunctionImportMapping FunctionImportName="SearchUsers" FunctionName="DemoModel.Store.select_tweetuser" />
+    <FunctionImportMapping FunctionImportName="select_tweetuserbyuserid" FunctionName="DemoModel.Store.select_tweetuserbyuserid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.select_tweetuserbyuserid_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Follwers" ColumnName="Follwers" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserByUserId" FunctionName="DemoModel.Store.select_tweetuserbyuserid" />
+    <FunctionImportMapping FunctionImportName="FollowUser" FunctionName="DemoModel.Store.follow_user" />
+    <FunctionImportMapping FunctionImportName="DisplaySelfTweets" FunctionName="DemoModel.Store.select_self_tweet" />
+    <FunctionImportMapping FunctionImportName="DeleteTweet" FunctionName="DemoModel.Store.delete_tweet" />
+    <FunctionImportMapping FunctionImportName="AddTweet" FunctionName="DemoModel.Store.insert_tweet" />
+    <FunctionImportMapping FunctionImportName="UpdateTweet" FunctionName="DemoModel.Store.update_tweet" />
+    <FunctionImportMapping FunctionImportName="UpdateUser" FunctionName="DemoModel.Store.update_tweetuser" />
+    <FunctionImportMapping FunctionImportName="select_self_tweet_byTweetId" FunctionName="DemoModel.Store.select_self_tweet_byTweetId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel.select_self_tweet_byTweetId_Result">
+          <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+          <ScalarProperty Name="TweetUserId" ColumnName="TweetUserId" />
+          <ScalarProperty Name="TweetText" ColumnName="TweetText" />
+          <ScalarProperty Name="TweetModifiedDate" ColumnName="TweetModifiedDate" />
+          <ScalarProperty Name="TweetDeleted" ColumnName="TweetDeleted" />
+          <ScalarProperty Name="TweetUserName" ColumnName="TweetUserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DisplaySelfTweetByTweetId" FunctionName="DemoModel.Store.select_self_tweet_byTweetId" />
+  </EntityContainerMapping>
+</Mapping>

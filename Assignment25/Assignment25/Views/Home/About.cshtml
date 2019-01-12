@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+ 
+<p> <h3>Twitter is</h3>
+<h1>what’s happening in the world and what people are talking about right now.</h1></p>
+
+<script type="text/javascript">
+
+    document.getElementById("about").classList.add("activeheader");
+    document.getElementById("contact").classList.remove("activeheader");
+    document.getElementById("profile").classList.remove("activeheader");
+    document.getElementById("home").classList.remove("activeheader");
+
+</script>
+<style>
+    #about .activeheader {
+        color: #1da1f2 !important;
+        font-weight: bold !important;
+    }
+</style>

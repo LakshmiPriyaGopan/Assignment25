@@ -1,0 +1,58 @@
+﻿@model  Assignment25.Models.Tweets
+
+@{
+    ViewBag.Title = "User List";
+}
+<h2>My Tweets</h2>
+
+<h2>Welcome,   @Html.DisplayFor(model => model.UserName)</h2>
+<p>
+    @Html.ActionLink("Create New", "CreateTweet",   new { id = @ViewBag.UserId, username = @ViewBag.UserName })
+
+    
+</p>
+<table id="myTable" class="table table-bordered">
+      <tr>
+        <th colspan="4" class="info">
+            Tweets
+        </th>
+    </tr>
+    <tr>
+        <th>UserId</th>
+        <th>User Name</th>
+        <th>Text</th>
+        <th>Modified Date</th>
+        <th></th>
+    </tr>
+
+    @foreach (var customer in Model.tweetslists)
+            {
+        <tr>
+            <td>  @Html.DisplayFor(model => customer.TweetUserId) </td>
+            <td>@Html.DisplayFor(model => customer.TweetUserName)</td>
+            <td>@Html.DisplayFor(model => customer.TweetText)</td>
+            <td>@Html.DisplayFor(model => customer.TweetModifiedDate)</td>
+            <td>@Html.ActionLink("Edit", "UpdateTweet", new {
+               tweetid = customer.TweetId,
+               id = customer.TweetUserId,
+               username = customer.TweetUserName
+           }) |
+            @Html.ActionLink("Delete", "DeleteTweet", new { tweetid = customer.TweetId, id=customer.TweetUserId,
+           username =customer.TweetUserName }) </td>
+        </tr>
+    } 
+    @if (Model.tweetslists == null)
+    {
+        <tr><td colspan="5">No Tweets present</td></tr>
+    }
+
+
+</table>
+<div>
+    @Html.ActionLink("Back to List", "SearchIndex", new { id = @ViewBag.UserId }) 
+</div>
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>

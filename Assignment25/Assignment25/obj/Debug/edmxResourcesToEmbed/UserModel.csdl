@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DemoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TblTweets" EntityType="DemoModel.TblTweet" />
+    <EntitySet Name="TblTweetusers" EntityType="DemoModel.TblTweetuser" />
+    <FunctionImport Name="delete_tweet">
+      <Parameter Name="TweetId" Mode="In" Type="Int32" />
+      <Parameter Name="TweetUserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="delete_tweetuser">
+      <Parameter Name="UserId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="follow_user">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="FollowUserId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_tweet" ReturnType="Collection(Decimal)">
+      <Parameter Name="TweetUserId" Mode="In" Type="Int32" />
+      <Parameter Name="TweetText" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insert_tweetuser" ReturnType="Collection(Decimal)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+      <Parameter Name="ModifiedDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Deleted" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="select_follow_tweet" ReturnType="Collection(DemoModel.select_follow_tweet_Result)">
+      <Parameter Name="TweetUserId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="select_self_tweet" ReturnType="Collection(DemoModel.select_self_tweet_Result)">
+      <Parameter Name="TweetUserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="select_tweetuser" ReturnType="Collection(DemoModel.select_tweetuser_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <AssociationSet Name="FK_TweetUserId" Association="DemoModel.FK_TweetUserId">
+      <End Role="TblTweetuser" EntitySet="TblTweetusers" />
+      <End Role="TblTweet" EntitySet="TblTweets" />
+    </AssociationSet>
+    <FunctionImport Name="update_tweetuser">
+      <Parameter Name="UserId" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="validate_tweetuser" ReturnType="Collection(DemoModel.validate_tweetuser_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ValidateTweetUser" EntitySet="TblTweetusers" ReturnType="Collection(DemoModel.TblTweetuser)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DisplayTweets" EntitySet="TblTweets" ReturnType="Collection(DemoModel.TblTweet)">
+      <Parameter Name="TweetUserId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SearchUsers" EntitySet="TblTweetusers" ReturnType="Collection(DemoModel.TblTweetuser)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="select_tweetuserbyuserid" ReturnType="Collection(DemoModel.select_tweetuserbyuserid_Result)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserByUserId" EntitySet="TblTweetusers" ReturnType="Collection(DemoModel.TblTweetuser)">
+      <Parameter Name="userid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FollowUser" ReturnType="Collection(Int32)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="FollowUserId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DisplaySelfTweets" EntitySet="TblTweets" ReturnType="Collection(DemoModel.TblTweet)">
+      <Parameter Name="TweetUserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteTweet" EntitySet="TblTweets" ReturnType="Collection(DemoModel.TblTweet)">
+      <Parameter Name="TweetId" Mode="In" Type="Int32" />
+      <Parameter Name="TweetUserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddTweet" EntitySet="TblTweets" ReturnType="Collection(DemoModel.TblTweet)">
+      <Parameter Name="TweetUserId" Mode="In" Type="Int32" />
+      <Parameter Name="TweetText" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTweet" EntitySet="TblTweets" ReturnType="Collection(DemoModel.TblTweet)">
+      <Parameter Name="TweetText" Mode="In" Type="String" />
+      <Parameter Name="TweetId" Mode="In" Type="Int32" />
+      <Parameter Name="TweetUserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateUser" EntitySet="TblTweetusers" ReturnType="Collection(DemoModel.TblTweetuser)">
+      <Parameter Name="UserId" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="EmailId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="select_self_tweet_byTweetId" ReturnType="Collection(DemoModel.select_self_tweet_byTweetId_Result)">
+      <Parameter Name="TweetId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DisplaySelfTweetByTweetId" EntitySet="TblTweets" ReturnType="Collection(DemoModel.TblTweet)">
+      <Parameter Name="TweetId" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="validate_user_Result">
+    <Property Type="Int32" Name="userid" Nullable="true" />
+    <Property Type="String" Name="roles" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="TblRole1">
+    <Property Type="Int32" Name="userid" Nullable="true" />
+    <Property Type="String" Name="roles" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="select_applied_leaves_Result">
+    <Property Type="String" Name="Employee" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LeaveStatusDesc" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="Approver" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="Boolean" Name="LeaveStatus" Nullable="true" />
+    <Property Type="Int32" Name="ApprovalBy" Nullable="true" />
+    <Property Type="String" Name="Reason" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="startdate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="enddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="contactno" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="select_current_employeeleaves_Result">
+    <Property Type="String" Name="Employee" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LeaveStatusDesc" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="Approver" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="Boolean" Name="LeaveStatus" Nullable="true" />
+    <Property Type="Int32" Name="ApprovalBy" Nullable="true" />
+    <Property Type="String" Name="Reason" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="startdate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="enddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="contactno" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="select_pending_Approval_leaves_Result">
+    <Property Type="String" Name="Employee" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LeaveStatusDesc" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="Approver" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="Boolean" Name="LeaveStatus" Nullable="true" />
+    <Property Type="Int32" Name="ApprovalBy" Nullable="true" />
+    <Property Type="String" Name="Reason" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="startdate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="enddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="contactno" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ctlTweet">
+    <Property Type="Int32" Name="TweetId" Nullable="false" />
+    <Property Type="Int32" Name="TweetUserId" Nullable="false" />
+    <Property Type="String" Name="TweetText" Nullable="false" />
+    <Property Type="DateTime" Name="TweetModifiedDate" Nullable="false" />
+    <Property Type="Boolean" Name="TweetDeleted" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="TblTweet">
+    <Key>
+      <PropertyRef Name="TweetId" />
+    </Key>
+    <Property Name="TweetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TweetUserId" Type="Int32" Nullable="false" />
+    <Property Name="TweetText" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="TweetModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="TweetDeleted" Type="Boolean" />
+    <NavigationProperty Name="TblTweetuser" Relationship="DemoModel.FK_TweetUserId" FromRole="TblTweet" ToRole="TblTweetuser" />
+    <Property Name="TweetUserName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TblTweetuser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Deleted" Type="Boolean" />
+    <Property Name="Follwers" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="TblTweets" Relationship="DemoModel.FK_TweetUserId" FromRole="TblTweetuser" ToRole="TblTweet" />
+  </EntityType>
+  <ComplexType Name="select_follow_tweet_Result">
+    <Property Type="Int32" Name="TweetId" Nullable="false" />
+    <Property Type="Int32" Name="TweetUserId" Nullable="false" />
+    <Property Type="String" Name="TweetText" Nullable="true" MaxLength="8000" />
+    <Property Type="DateTime" Name="TweetModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="TweetDeleted" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="select_self_tweet_Result">
+    <Property Type="Int32" Name="TweetId" Nullable="false" />
+    <Property Type="Int32" Name="TweetUserId" Nullable="false" />
+    <Property Type="String" Name="TweetText" Nullable="true" MaxLength="8000" />
+    <Property Type="DateTime" Name="TweetModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="TweetDeleted" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="select_tweetuser_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="EmailId" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Deleted" Nullable="true" />
+    <Property Type="String" Name="Follwers" Nullable="true" MaxLength="8000" />
+    <Property Type="Int32" Name="Count" Nullable="true" />
+  </ComplexType>
+  <Association Name="FK_TweetUserId">
+    <End Type="DemoModel.TblTweetuser" Role="TblTweetuser" Multiplicity="1" />
+    <End Type="DemoModel.TblTweet" Role="TblTweet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblTweetuser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TblTweet">
+        <PropertyRef Name="TweetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="validate_tweetuser_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="EmailId" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Deleted" Nullable="true" />
+    <Property Type="String" Name="Follwers" Nullable="true" MaxLength="8000" />
+    <Property Type="Int32" Name="Count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ComplexType1" />
+  <ComplexType Name="select_tweetuserbyuserid_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="EmailId" Nullable="true" MaxLength="1000" />
+    <Property Type="DateTime" Name="ModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Deleted" Nullable="true" />
+    <Property Type="String" Name="Follwers" Nullable="true" MaxLength="8000" />
+    <Property Type="Int32" Name="Count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="select_self_tweet_byTweetId_Result">
+    <Property Type="Int32" Name="TweetId" Nullable="false" />
+    <Property Type="Int32" Name="TweetUserId" Nullable="false" />
+    <Property Type="String" Name="TweetText" Nullable="true" MaxLength="8000" />
+    <Property Type="DateTime" Name="TweetModifiedDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="TweetDeleted" Nullable="true" />
+    <Property Type="String" Name="TweetUserName" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+</Schema>

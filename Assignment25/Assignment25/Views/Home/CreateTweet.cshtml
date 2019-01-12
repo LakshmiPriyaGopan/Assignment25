@@ -1,0 +1,88 @@
+﻿@model Assignment25.TblTweet
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>  Welcome Home @Html.DisplayFor(model => model.TweetUserName) </h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Create 
+         </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.TweetId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{Model.TweetId =1;}
+                @Html.EditorFor(model => model.TweetId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TweetId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TweetUserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                 
+                @Html.EditorFor(model => model.TweetUserId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TweetUserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TweetUserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @{Model.TweetUserName = @ViewBag.UserName;}
+                @Html.EditorFor(model => model.TweetUserName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TweetUserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TweetText, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.TweetText,8,30, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TweetText, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.TweetModifiedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TweetModifiedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TweetModifiedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TweetDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TweetDeleted, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TweetDeleted, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+   @*@Html.ActionLink("Back to My Twitter List", "Index")*@
+
+    @Html.ActionLink("Back to My Twitter List", "MyTweets", new { id = Model.TweetUserId, user = Model.TweetUserName })
+</div>
+<style>
+
+    textarea{
+        color:black;
+    }
+</style>

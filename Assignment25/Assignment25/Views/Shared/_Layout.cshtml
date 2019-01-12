@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
+    <script type="text/javascript"
+            src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"
+            src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:#1da1f2;color:white">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div>   @Html.ActionLink("Twitter", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    
+                        <li id="home">@Html.ActionLink("Home", "SearchIndex", new { userid = @ViewBag.UserId }))</li>  
+                
+                        <li id="profile">@Html.ActionLink("Profile", "MyProfile",  new { userid = @ViewBag.UserId})</li> 
+                    <li id="about">@Html.ActionLink("About", "About", "Home")</li>
+                    <li id="contact">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li id="logout">@Html.ActionLink("Log out", "Index", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <style>
+        a{
+            color:white;
+        }
+            a:hover {
+                color: #1da1f2 !important;
+                font-weight: bold !important;
+            }
+            a:active , .activeheader {
+                color: #1da1f2 !important;
+                font-weight: bold !important;
+            }
+        .navbar-inverse {
+            background-color: #e6ecf0 !important;
+        }
+        body {
+            font-family "Segoe UI",Arial,sans-serif;
+        }
+    </style>
+</body>
+</html>

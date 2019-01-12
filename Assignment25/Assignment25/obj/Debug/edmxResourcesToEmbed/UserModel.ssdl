@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Demo.dbo.TblLeaves1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TblTweet">
+    <Key>
+      <PropertyRef Name="TweetId" />
+    </Key>
+    <Property Name="TweetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TweetUserId" Type="int" Nullable="false" />
+    <Property Name="TweetText" Type="varchar" MaxLength="8000" />
+    <Property Name="TweetModifiedDate" Type="datetime" />
+    <Property Name="TweetDeleted" Type="bit" />
+    <Property Name="TweetUserName" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="TblTweetuser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="1000" />
+    <Property Name="EmailId" Type="varchar" MaxLength="1000" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="Deleted" Type="bit" />
+    <Property Name="Follwers" Type="varchar" MaxLength="8000" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <Association Name="FK_TweetUserId">
+    <End Role="TblTweetuser" Type="Self.TblTweetuser" Multiplicity="1" />
+    <End Role="TblTweet" Type="Self.TblTweet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblTweetuser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TblTweet">
+        <PropertyRef Name="TweetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="delete_tweet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TweetId" Type="int" Mode="In" />
+    <Parameter Name="TweetUserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="delete_tweetuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="follow_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="FollowUserId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="insert_tweet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TweetUserId" Type="int" Mode="In" />
+    <Parameter Name="TweetText" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="insert_tweetuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="EmailId" Type="varchar" Mode="In" />
+    <Parameter Name="ModifiedDate" Type="datetime" Mode="In" />
+    <Parameter Name="Deleted" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="select_follow_tweet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TweetUserId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="select_self_tweet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TweetUserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="select_self_tweet_byTweetId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TweetId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="select_tweetuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="select_tweetuserbyuserid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="update_tweet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TweetText" Type="varchar" Mode="In" />
+    <Parameter Name="TweetId" Type="int" Mode="In" />
+    <Parameter Name="TweetUserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="update_tweetuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="EmailId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="validate_tweetuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="DemoModelStoreContainer">
+    <EntitySet Name="TblTweet" EntityType="Self.TblTweet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblTweetuser" EntityType="Self.TblTweetuser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TweetUserId" Association="Self.FK_TweetUserId">
+      <End Role="TblTweetuser" EntitySet="TblTweetuser" />
+      <End Role="TblTweet" EntitySet="TblTweet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
